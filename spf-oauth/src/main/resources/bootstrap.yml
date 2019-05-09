@@ -1,0 +1,16 @@
+#spring:
+#  cloud:
+#    config: #配置中心地址
+#      uri: http://localhost:9871/
+#      name: spf-oauth
+#      profile: dev
+
+spring:
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.0.73:8848
+        file-extension: yml
+        prefix: spf-oauth

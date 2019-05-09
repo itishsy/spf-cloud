@@ -1,0 +1,47 @@
+# 两种方式：
+
+# 1. 直接配置config地址，注册中心地址及其他配置从配置中心获取(这种方式比较简洁)
+
+#spring:
+#  cloud:
+#    config: #配置中心地址
+#      uri: http://localhost:9871/
+#      name: spf-gateway
+#      profile: dev
+
+spring:
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.0.73:8848
+        file-extension: yml
+        prefix: spf-gateway
+
+
+# 2. 配置注册中心eureka地址，通过服务发现的方式获取其他配置
+
+#spring:
+#  application:
+#    name: spf-gateway
+#  profiles:
+#    active: dev
+#  cloud:
+#    config:
+#      fail-fast: true
+#      discovery:
+#        service-id: spf-config
+#        enabled: true
+#      profile: ${spring.profiles.active}
+#      label: ${spring.profiles.active}
+#
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    lease-renewal-interval-in-seconds: 5
+#    lease-expiration-duration-in-seconds: 20
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#    registry-fetch-interval-seconds: 10

@@ -1,0 +1,27 @@
+server:
+  port: 9871
+
+spring:
+  application:
+    name: spf-config
+  profiles:
+    active: native #配置在本地，后续考虑在see-admin配置
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config
+
+## 当其他应用直接配置config地址时，config注册到eureka没什么作用(纠正：高可用）
+#  当通过发现的方式获取config，才需要eureka地址。
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    prefer-ip-address: true
+#    lease-renewal-interval-in-seconds: 5
+#    lease-expiration-duration-in-seconds: 20
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#    hostname: ${spring.cloud.client.ip-address}
+
